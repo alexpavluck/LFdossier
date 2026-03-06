@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHO LF Elimination Dossier — Evidence Collection Checklist</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-cream-50: #f8f8f5;
+            --color-cream-100: #fffff9;
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-red-500: #c53030;
+            --color-amber-500: #d69e2e;
+            --color-green-500: #2f855a;
+
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+            --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-200: rgba(245, 245, 245, 1);
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300: rgba(50, 184, 198, 1);
+
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(167, 169, 169, 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+                --color-red-500: #fc8181;
+                --color-amber-500: #f6e05e;
+                --color-green-500: #68d391;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family-base);
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: var(--space-20);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            margin-bottom: var(--space-24);
+            padding-bottom: var(--space-16);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        h1 { font-size: 26px; margin-bottom: var(--space-4); color: var(--color-text); }
+
+        .subtitle {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--space-8);
+        }
+
+        .header-meta {
+            display: flex; gap: var(--space-16); flex-wrap: wrap;
+            font-size: 12px; color: var(--color-text-secondary);
+        }
+        .header-meta span { display: flex; align-items: center; gap: 4px; }
+
+        /* Knowledge base banner */
+        .kb-banner {
+            display: flex; align-items: center; gap: var(--space-12);
+            background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.08), rgba(var(--color-teal-500-rgb), 0.03));
+            border: 1px solid rgba(var(--color-teal-500-rgb), 0.25);
+            border-radius: var(--radius-lg);
+            padding: var(--space-12) var(--space-20);
+            margin-bottom: var(--space-16);
+        }
+        .kb-icon { font-size: 28px; flex-shrink: 0; }
+        .kb-text { flex: 1; }
+        .kb-text strong { font-size: 14px; color: var(--color-text); display: block; margin-bottom: 2px; }
+        .kb-text span { font-size: 12px; color: var(--color-text-secondary); }
+        .kb-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; background: var(--color-primary); color: white;
+            text-decoration: none; border-radius: var(--radius-base);
+            font-size: 13px; font-weight: 500; transition: background 0.2s;
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .kb-link:hover { background: var(--color-primary-hover); }
+        .kb-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+        /* Progress bar */
+        .progress-container {
+            background: var(--color-surface); border-radius: var(--radius-lg);
+            padding: var(--space-16); margin-bottom: var(--space-16);
+            border: 1px solid var(--color-card-border);
+        }
+        .progress-row { display: flex; gap: var(--space-16); flex-wrap: wrap; }
+        .progress-block { flex: 1; min-width: 200px; }
+        .progress-block-label {
+            display: flex; justify-content: space-between;
+            margin-bottom: var(--space-4); font-size: 13px; font-weight: 500;
+        }
+        .progress-bar {
+            height: 20px; background: var(--color-secondary);
+            border-radius: 10px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; background: var(--color-primary);
+            transition: width 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 11px; font-weight: 600; min-width: 0;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex; gap: var(--space-8); margin-bottom: var(--space-16);
+            flex-wrap: wrap; align-items: center;
+        }
+        .btn {
+            padding: 6px var(--space-12); background: var(--color-primary);
+            color: white; border: none; border-radius: var(--radius-base);
+            cursor: pointer; font-size: 13px; font-weight: 500; transition: background 0.2s;
+        }
+        .btn:hover { background: var(--color-primary-hover); }
+        .btn-secondary { background: var(--color-secondary); color: var(--color-text); }
+        .btn-secondary:hover { background: rgba(var(--color-brown-600-rgb), 0.2); }
+        .btn-danger { background: var(--color-red-500); }
+
+        .filter-group { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+        .filter-btn {
+            padding: 5px var(--space-8); background: var(--color-secondary); color: var(--color-text);
+            border: 1px solid var(--color-border); border-radius: var(--radius-base);
+            cursor: pointer; font-size: 12px; transition: all 0.2s;
+        }
+        .filter-btn.active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+
+        /* Priority tags */
+        .priority-tag {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .priority-required { background: rgba(197,48,48,0.12); color: var(--color-red-500); }
+        .priority-recommended { background: rgba(214,158,46,0.12); color: var(--color-amber-500); }
+        .priority-supporting { background: rgba(47,133,90,0.12); color: var(--color-green-500); }
+
+        /* Sections */
+        .section {
+            background: var(--color-surface); border-radius: var(--radius-lg);
+            padding: var(--space-20); margin-bottom: var(--space-12);
+            border: 1px solid var(--color-card-border);
+        }
+        .section-header {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; user-select: none;
+        }
+        .section-title {
+            font-size: 16px; font-weight: 600;
+            display: flex; align-items: center; gap: var(--space-8);
+        }
+        .section-meta {
+            display: flex; align-items: center; gap: var(--space-12);
+            font-size: 13px; color: var(--color-text-secondary); font-weight: 500;
+        }
+        .section-desc {
+            font-size: 13px; color: var(--color-text-secondary);
+            margin: var(--space-8) 0 var(--space-16) 26px; line-height: 1.5;
+        }
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        .collapse-icon { transition: transform 0.3s; display: inline-block; font-size: 12px; }
+        .collapse-icon.rotated { transform: rotate(180deg); }
+
+        /* Items */
+        .item {
+            padding: var(--space-16); margin-bottom: var(--space-8);
+            background: var(--color-background); border-radius: var(--radius-base);
+            border: 1px solid var(--color-border);
+        }
+        .item.checked { opacity: 0.7; }
+        .item-header { display: flex; align-items: flex-start; gap: var(--space-12); }
+
+        .checkbox-wrapper { display: flex; align-items: center; min-width: 20px; padding-top: 2px; }
+        input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--color-primary); }
+
+        .item-content { flex: 1; }
+        .item-title-row { display: flex; align-items: center; gap: var(--space-8); flex-wrap: wrap; margin-bottom: var(--space-4); }
+        .item-title { font-weight: 600; font-size: 14px; }
+        .item-description { font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--space-4); line-height: 1.5; }
+
+        .item-meta { display: flex; gap: var(--space-8); flex-wrap: wrap; margin-top: var(--space-8); }
+        .data-source {
+            display: inline-block; padding: 3px 8px; background: var(--color-secondary);
+            border-radius: 4px; font-size: 11px; color: var(--color-text); font-weight: 500;
+        }
+        .who-ref {
+            display: inline-block; padding: 3px 8px;
+            background: rgba(var(--color-teal-500-rgb), 0.1);
+            border-radius: 4px; font-size: 11px; color: var(--color-primary); font-weight: 500;
+        }
+
+        .notes-area { margin-top: var(--space-8); }
+        .notes-area textarea {
+            width: 100%; padding: var(--space-8);
+            border: 1px solid var(--color-border); border-radius: var(--radius-base);
+            background: var(--color-surface); color: var(--color-text);
+            font-family: var(--font-family-base); font-size: 12px;
+            resize: vertical; min-height: 48px;
+        }
+
+        .threshold-box {
+            margin-top: var(--space-8); padding: var(--space-8) var(--space-12);
+            background: rgba(var(--color-teal-500-rgb), 0.06);
+            border-left: 3px solid var(--color-primary);
+            border-radius: 0 var(--radius-base) var(--radius-base) 0;
+            font-size: 12px; line-height: 1.6;
+        }
+
+        /* Upload area */
+        .upload-area {
+            margin-top: var(--space-12);
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-12) var(--space-16);
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            transition: border-color 0.2s, background 0.2s;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            border-color: var(--color-primary);
+            background: rgba(var(--color-teal-500-rgb), 0.03);
+        }
+        .upload-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: rgba(var(--color-teal-500-rgb), 0.1);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .upload-icon svg {
+            width: 18px; height: 18px;
+            stroke: var(--color-primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .upload-text {
+            flex: 1;
+        }
+        .upload-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+        .upload-text-main .upload-link {
+            color: var(--color-primary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .upload-text-sub {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            margin-top: 2px;
+        }
+        .upload-btn {
+            padding: 6px 14px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .upload-btn:hover { background: var(--color-primary-hover); }
+        .upload-btn svg {
+            width: 14px; height: 14px;
+            stroke: white; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        /* Uploaded file chips (mock state) */
+        .uploaded-files {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            margin-top: var(--space-8);
+        }
+        .file-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px;
+            background: rgba(var(--color-teal-500-rgb), 0.08);
+            border: 1px solid rgba(var(--color-teal-500-rgb), 0.2);
+            border-radius: 20px;
+            font-size: 11px; font-weight: 500;
+            color: var(--color-primary);
+        }
+        .file-chip svg {
+            width: 12px; height: 12px;
+            stroke: var(--color-primary); fill: none;
+            stroke-width: 2;
+        }
+
+        /* Country info form */
+        .country-info {
+            background: var(--color-surface); border-radius: var(--radius-lg);
+            padding: var(--space-20); margin-bottom: var(--space-16);
+            border: 1px solid var(--color-card-border);
+        }
+        .country-info h3 { font-size: 15px; margin-bottom: var(--space-12); }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-12); }
+        .form-group label { display: block; font-size: 12px; font-weight: 500; margin-bottom: 4px; color: var(--color-text-secondary); }
+        .form-group input, .form-group select {
+            width: 100%; padding: 6px 10px;
+            border: 1px solid var(--color-border); border-radius: var(--radius-base);
+            background: var(--color-background); color: var(--color-text);
+            font-family: var(--font-family-base); font-size: 13px;
+        }
+
+        /* Print styles */
+        @media print {
+            body { padding: 10px; font-size: 11px; }
+            .controls, .btn, .notes-area, .checkbox-wrapper, .filter-group, .country-info, .kb-banner, .upload-area, .uploaded-files { display: none !important; }
+            .section-content { display: block !important; }
+            .section { break-inside: avoid; page-break-inside: avoid; padding: 10px; margin-bottom: 8px; }
+            .item { padding: 8px; margin-bottom: 4px; }
+            .progress-container { break-inside: avoid; }
+            .item.checked .item-title::after { content: " \2713"; color: var(--color-green-500); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WHO LF Elimination Dossier — Evidence Collection Checklist</h1>
+            <p class="subtitle">Planning tool for NTD programme managers preparing a dossier for validation of elimination of lymphatic filariasis as a public health problem</p>
+            <div class="header-meta">
+                <span>Based on WHO/HTM/NTD/PCT/2017.1 &amp; 2022 M&amp;E Manual (2nd ed.)</span>
+                <span>|</span>
+                <span>Checklist version 2.0 — February 2026</span>
+            </div>
+        </header>
+
+        <div class="kb-banner">
+            <div class="kb-icon">&#128218;</div>
+            <div class="kb-text">
+                <strong>Have questions about the LF dossier process?</strong>
+                <span>Ask the Knowledge Base — powered by AI with WHO guidance documents, dossier templates, and lessons from validated countries.</span>
+            </div>
+            <a class="kb-link" href="https://notebooklm.google.com/notebook/ae7b8c63-12c6-4980-b507-3ec60cb3fdbc" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm.93 4.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 4.588zM8 3.2a.8.8 0 1 0 0 1.6.8.8 0 0 0 0-1.6z"/></svg>
+                Ask the Knowledge Base
+            </a>
+        </div>
+
+        <div class="country-info" id="country-info">
+            <h3>Country / Programme Information</h3>
+            <div class="form-grid">
+                <div class="form-group"><label>Country</label><input type="text" id="ci-country" placeholder="e.g. Republic of Zambia"></div>
+                <div class="form-group"><label>WHO Region</label>
+                    <select id="ci-region">
+                        <option value="">— Select —</option>
+                        <option>AFRO</option><option>AMRO/PAHO</option><option>EMRO</option>
+                        <option>EURO</option><option>SEARO</option><option>WPRO</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Programme Manager</label><input type="text" id="ci-manager" placeholder="Name &amp; title"></div>
+                <div class="form-group"><label>No. of Endemic IUs</label><input type="number" id="ci-ius" placeholder="e.g. 42"></div>
+                <div class="form-group"><label>Primary Vector(s)</label>
+                    <select id="ci-vector">
+                        <option value="">— Select —</option>
+                        <option>Anopheles</option><option>Culex</option><option>Aedes</option>
+                        <option>Mansonia</option><option>Mixed / Multiple</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Parasite Species</label>
+                    <select id="ci-parasite">
+                        <option value="">— Select —</option>
+                        <option>W. bancrofti</option><option>Brugia malayi</option>
+                        <option>Brugia timori</option><option>Mixed</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>MDA Start Year</label><input type="number" id="ci-mda-start" placeholder="e.g. 2008"></div>
+                <div class="form-group"><label>MDA Regimen</label>
+                    <select id="ci-regimen">
+                        <option value="">— Select —</option>
+                        <option>DEC + ALB</option><option>IVM + ALB</option>
+                        <option>IDA (IVM + DEC + ALB)</option><option>ALB alone</option>
+                        <option>Mixed regimens</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Planned Submission Year</label><input type="number" id="ci-submission" placeholder="e.g. 2027"></div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-row" id="progress-row"></div>
+            <div style="margin-top: var(--space-12);">
+                <div class="progress-block-label"><span>Overall Progress</span><span id="progress-text">0 / 0 (0%)</span></div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%">0%</div></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="expandAll()">Expand All</button>
+            <button class="btn btn-secondary" onclick="collapseAll()">Collapse All</button>
+            <div style="border-left:1px solid var(--color-border); height:24px;"></div>
+            <div class="filter-group" id="filter-group">
+                <button class="filter-btn active" onclick="filterItems('all',this)">All</button>
+                <button class="filter-btn" onclick="filterItems('completed',this)">Done</button>
+                <button class="filter-btn" onclick="filterItems('incomplete',this)">Remaining</button>
+                <button class="filter-btn" onclick="filterItems('required',this)">Required</button>
+                <button class="filter-btn" onclick="filterItems('recommended',this)">Recommended</button>
+            </div>
+            <div style="flex:1;"></div>
+            <button class="btn btn-secondary" onclick="exportJSON()">Save Backup</button>
+            <button class="btn btn-secondary" onclick="importJSON()">Load Backup</button>
+            <button class="btn btn-secondary" onclick="exportText()">Export Text</button>
+            <button class="btn btn-secondary" onclick="window.print()">Print</button>
+            <button class="btn btn-danger" onclick="resetAll()">Reset</button>
+            <input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImport(event)">
+        </div>
+
+        <div id="checklist-container"></div>
+    </div>
+
+<script>
+const checklistData = [
+    {
+        section: "1. Executive Summary & Official Authorization",
+        description: "Formal government request and high-level programme summary required by WHO before dossier review can proceed.",
+        items: [
+            { title: "Official Request Letter from Government", description: "Formal letter from the Minister of Health (or equivalent) to WHO requesting validation of elimination of LF as a public health problem.", dataSource: "Ministry of Health correspondence", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a73", priority: "required" },
+            { title: "Executive Summary of the LF Programme", description: "High-level narrative (3\u20135 pages) summarising the country\u2019s journey from baseline endemicity through MDA to post-treatment surveillance, with key dates and milestones.", dataSource: "Programme management team", whoRef: "Dossier template \u00a71", priority: "required" },
+            { title: "Programme Organizational Structure", description: "Organogram showing roles and responsibilities at national, regional/provincial, and district levels. Include names and positions of key personnel responsible for data quality.", dataSource: "National programme documents, MoH organogram", whoRef: "Dossier template \u00a72", priority: "required" },
+            { title: "Historical Overview & Key Milestones", description: "Timeline of the LF programme: year established, first mapping, MDA launch year, major policy changes, TAS dates, and programme reviews.", dataSource: "MoH reports, WHO annual reports, programme review documents", whoRef: "Dossier template \u00a72", priority: "required" },
+            { title: "Financial Resources & Partner Support", description: "Summary of funding sources (government, WHO, bilateral donors, NGOs, pharmaceutical donations) over the programme lifetime. Include WHO Joint Application Package (JAP) forms if used.", dataSource: "Budget documents, donor reports, JAP forms, partnership agreements", whoRef: "Dossier template \u00a72", priority: "recommended" },
+            { title: "National Policies, Guidelines & Legal Framework", description: "References to national NTD master plan, MDA policy, drug registration for DEC/IVM/ALB, and any legislation supporting the elimination programme.", dataSource: "National NTD master plan, gazette notices, drug regulatory authority", whoRef: "Dossier template \u00a72", priority: "recommended" }
+        ]
+    },
+    {
+        section: "2. Endemicity Mapping & Baseline Data",
+        description: "Complete classification of every IU as endemic, non-endemic, or previously unknown \u2014 with supporting evidence. This is the foundation of the dossier.",
+        items: [
+            { title: "IU-Level Endemicity Classification Table", description: "Table listing EVERY implementation unit in the country with its classification: endemic (requiring MDA), non-endemic, or unknown status resolved by confirmatory mapping. No IU may be left unclassified.", dataSource: "Baseline mapping surveys, historical prevalence records, health facility data", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.1", priority: "required", threshold: "Endemicity = \u22651% microfilaraemia (Mf) or \u22652% circulating filarial antigen (CFA) prevalence in baseline surveys." },
+            { title: "Baseline Mf and/or Ag Prevalence by IU", description: "Pre-MDA prevalence data (Mf by night blood smear and/or CFA by ICT/FTS) for each endemic IU, including sample size, date, and diagnostic method.", dataSource: "Initial mapping surveys, sentinel site baseline data", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.1", priority: "required" },
+            { title: "Mapping Methodology & Protocols", description: "Description of mapping design: sampling strategy, diagnostic tools used (ICT cards, FTS, Og4C3, Brugia Rapid, night blood films), sample sizes, and dates for each survey.", dataSource: "Mapping survey protocols, technical reports", whoRef: "M&E Manual 2nd ed. Ch. 2", priority: "required" },
+            { title: "Confirmatory Mapping of Uncertain Areas", description: "For IUs initially of unknown or borderline endemicity: results of confirmatory mapping surveys. Include methodology, dates, and classification outcome.", dataSource: "Confirmatory mapping reports, laboratory results", whoRef: "M&E Manual 2nd ed. Ch. 2", priority: "required" },
+            { title: "Non-Endemic Area Justification", description: "Rationale for classifying IUs as non-endemic \u2014 based on survey results, historical records, ecological factors, or absence of clinical disease.", dataSource: "Mapping data, ecological assessments, clinical records", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.1", priority: "required" },
+            { title: "Vector Species Identification & Distribution", description: "Documentation of primary and secondary mosquito vector species (Anopheles, Culex, Aedes, Mansonia) by geographic area. Vector type determines TAS critical cut-off thresholds.", dataSource: "Entomological surveys, published literature, vector control programme data", whoRef: "M&E Manual 2nd ed. Ch. 1", priority: "required", threshold: "Aedes-transmitted areas: stricter thresholds (<1% Ag in TAS). Anopheles/Culex/Mansonia areas: <2% Ag threshold." },
+            { title: "Parasite Species Identification", description: "Confirmation of Wuchereria bancrofti, Brugia malayi, or B. timori distribution by area. Species determines diagnostic approach (Ag vs Ab testing in TAS).", dataSource: "Parasitological surveys, laboratory records", whoRef: "M&E Manual 2nd ed. Ch. 1", priority: "required" },
+            { title: "Co-Endemicity Mapping (Onchocerciasis, Loiasis, Other NTDs)", description: "Map of areas co-endemic with onchocerciasis, loiasis, STH, or schistosomiasis \u2014 affecting MDA regimen selection (e.g., DEC contraindicated in oncho/Loa loa areas).", dataSource: "Integrated NTD mapping, onchocerciasis/STH programme data", whoRef: "M&E Manual 2nd ed. Ch. 3", priority: "required" },
+            { title: "Population Data by IU (Denominators)", description: "Total population, target population, and eligible population for MDA for each IU, with source year. Include census methodology and any population adjustments.", dataSource: "National census, DHIS2, health facility catchment estimates", whoRef: "Dossier template, Annex tables", priority: "required" },
+            { title: "GIS Maps of Endemic Areas", description: "Maps showing: IU boundaries, baseline endemicity levels, vector distribution, and co-endemic areas. Required as annexes in the dossier.", dataSource: "GIS shapefiles, programme mapping tools", whoRef: "Dossier template \u00a74, Annexes", priority: "required" }
+        ]
+    },
+    {
+        section: "3. Mass Drug Administration (MDA) Implementation",
+        description: "Complete MDA history for every endemic IU \u2014 rounds, regimens, coverage, quality, and logistics. WHO requires \u22655 effective rounds with \u226565% epidemiological coverage.",
+        items: [
+            { title: "MDA History Table by IU", description: "For each endemic IU and each year: date of MDA round, drug regimen used (DEC+ALB, IVM+ALB, IDA, ALB alone), number treated, and coverage percentage.", dataSource: "MDA campaign reports, drug distribution records, national NTD database", whoRef: "Dossier template \u00a75, Annex tables", priority: "required", threshold: "Minimum 5 consecutive annual rounds of effective MDA (2-drug). For IDA: 1\u20132 rounds may suffice if paired with IIS." },
+            { title: "Epidemiological (Programme) Coverage by IU and Round", description: "Coverage = number treated \u00f7 total population of IU. Target: \u226565% epidemiological coverage in every endemic IU for every round counted as effective.", dataSource: "MDA tally sheets, WHO Joint Reporting Form / EPIRF, TIPAC data", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.2", priority: "required", threshold: "\u226565% of total population treated per round. Rounds below this threshold may not count toward the minimum 5." },
+            { title: "Reported (Administrative) Coverage by IU and Round", description: "Number of people treated \u00f7 eligible (target) population, reported by drug distributors and health workers.", dataSource: "Drug distributor tally sheets, summary MDA forms", whoRef: "M&E Manual 2nd ed. Ch. 4", priority: "required" },
+            { title: "Coverage Evaluation Surveys (CES)", description: "Results of independent post-MDA household surveys to validate reported coverage. Include survey methodology, sample size, and comparison with reported figures.", dataSource: "CES reports, WHO CES tools, Survey Sample Builder (SSB)", whoRef: "M&E Manual 2nd ed. Ch. 4", priority: "recommended" },
+            { title: "Supervisor\u2019s Coverage Tool (SCT) / Monitoring Data", description: "Spot-check coverage monitoring data collected during or immediately after MDA rounds by supervisors.", dataSource: "SCT forms, supervisory reports", whoRef: "M&E Manual 2nd ed. Ch. 4", priority: "recommended" },
+            { title: "Data Quality Assessments (DQA)", description: "Results of systematic data quality audits comparing reported coverage with independent verification. Document discrepancies and corrective actions.", dataSource: "DQA reports, verification sampling results", whoRef: "M&E Manual 2nd ed. Ch. 4", priority: "recommended" },
+            { title: "Drug Supply, Procurement & Logistics", description: "Drug procurement records (donated and purchased), stock management, distribution chain, cold chain (if applicable), and wastage rates.", dataSource: "Drug requisition forms, stock cards, WHO donation programme records", whoRef: "Dossier template \u00a75", priority: "required" },
+            { title: "Adverse Events Monitoring & Pharmacovigilance", description: "Documentation of serious adverse events (SAE) monitoring system, SAE reports filed, and outcomes. Critical for IDA programmes.", dataSource: "SAE reporting forms, pharmacovigilance database, drug safety committee minutes", whoRef: "M&E Manual 2nd ed. Ch. 3", priority: "required" },
+            { title: "MDA Delivery Strategy & Operational Plans", description: "Description of distribution approach (house-to-house, fixed-post, school-based, community-directed), training of distributors, directly observed treatment protocols.", dataSource: "MDA implementation guidelines, training materials, operational plans", whoRef: "Dossier template \u00a75", priority: "required" },
+            { title: "Social Mobilization & Community Engagement", description: "Evidence of IEC (information, education, communication) activities: community sensitization, media campaigns, key messages, materials used.", dataSource: "IEC materials, community mobilization reports, KAP survey results", whoRef: "Dossier template \u00a75", priority: "recommended" },
+            { title: "Hard-to-Reach & Special Populations", description: "Documentation of how mobile, migrant, displaced, or geographically isolated populations were reached. Include mop-up campaign data.", dataSource: "Special campaign reports, mop-up activity records, border area MDA reports", whoRef: "M&E Manual 2nd ed. Ch. 3", priority: "required" },
+            { title: "Reasons for MDA Gaps or Interruptions", description: "Explanation of any years where MDA was not conducted or coverage fell below 65% \u2014 including conflict, natural disaster, COVID-19, supply issues \u2014 and mitigation steps taken.", dataSource: "Programme review reports, situation reports, annual plans", whoRef: "Dossier template \u00a75", priority: "required" },
+            { title: "WHO Annual Reporting (EPIRF / Joint Reporting Form)", description: "Copies or references to WHO Epidemiological Data Reporting Forms submitted annually for each year of MDA. These are cross-referenced by the Dossier Review Group.", dataSource: "WHO country office, EPIRF database, PCT databank", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.2", priority: "required" }
+        ]
+    },
+    {
+        section: "4. Sentinel & Spot-Check Site Monitoring",
+        description: "Longitudinal infection monitoring at fixed sentinel sites and additional spot-check sites throughout the MDA period, documenting the decline in prevalence.",
+        items: [
+            { title: "Sentinel Site Selection & Baseline Data", description: "List of sentinel sites with selection rationale (typically highest baseline prevalence areas), baseline Mf/CFA prevalence, sample size, date, and geographic coordinates.", dataSource: "Sentinel site baseline survey reports", whoRef: "M&E Manual 2nd ed. Ch. 5", priority: "required", threshold: "Minimum 1 sentinel site per 1 million at-risk population. Sample \u2265300 individuals aged \u22655 years per site." },
+            { title: "Spot-Check Site Data", description: "Data from additional sites (not sentinel sites) selected to verify prevalence trends. Include selection rationale and all survey results.", dataSource: "Spot-check survey reports", whoRef: "M&E Manual 2nd ed. Ch. 5", priority: "required", threshold: "Minimum 1 spot-check site per 1 million at-risk population." },
+            { title: "Longitudinal Prevalence Trends at Sentinel/Spot-Check Sites", description: "Year-by-year Mf and/or CFA prevalence at each site across all survey rounds, presented in table and graph format. Should clearly show declining trend.", dataSource: "Monitoring survey results compiled over programme duration", whoRef: "Dossier template \u00a76, Annex tables", priority: "required", threshold: "Must reach <1% Mf or <2% CFA before the EU is eligible for TAS." },
+            { title: "Monitoring Survey Methodology & Diagnostics", description: "Description of survey methods: sampling approach, diagnostic tests used at each time point, laboratory SOPs, and any changes in methodology over time.", dataSource: "Survey protocols, laboratory SOPs", whoRef: "M&E Manual 2nd ed. Ch. 5", priority: "required" },
+            { title: "Quality Assurance for Monitoring Surveys", description: "Documentation of quality control procedures: retesting, external quality assurance (EQA), proficiency testing for microscopists and RDT readers.", dataSource: "QA/QC reports, EQA results, proficiency test scores", whoRef: "M&E Manual 2nd ed. Ch. 5", priority: "recommended" }
+        ]
+    },
+    {
+        section: "5. Epidemiological Monitoring Surveys (EMS) / Pre-TAS",
+        description: "Surveys in the adult population to confirm prevalence has fallen below thresholds, making the evaluation unit eligible for TAS.",
+        items: [
+            { title: "EMS Eligibility Documentation", description: "Evidence that each EU met EMS eligibility criteria: \u22655 effective MDA rounds with \u226565% coverage AND sentinel/spot-check sites showing <1% Mf or <2% CFA.", dataSource: "MDA coverage summaries, sentinel site trend data", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required" },
+            { title: "Evaluation Unit (EU) Formation", description: "Definition and map of each EU: contiguous IUs with similar epidemiological history grouped together. Population per EU should not exceed ~500,000.", dataSource: "EU formation documents, maps", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required", threshold: "EU population \u2264500,000. Group contiguous IUs with similar baseline prevalence and MDA history." },
+            { title: "EMS Survey Design & Methodology", description: "Sampling design: random sampling of adults \u226520 years from highest-risk sites within the EU. Include sample size calculation and site selection rationale.", dataSource: "EMS protocols, WHO Survey Sample Builder (SSB) outputs", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required" },
+            { title: "EMS Timing Relative to Last MDA", description: "Documentation that EMS was conducted at appropriate interval after last MDA round: \u22656 months for 2-drug regimens, \u22659 months for IDA.", dataSource: "EMS survey reports, MDA calendar", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required", threshold: "\u22656 months post-MDA (2-drug). \u22659 months post-MDA (IDA)." },
+            { title: "EMS Diagnostic Results", description: "For W. bancrofti: Ag prevalence and Mf testing of Ag-positive individuals. For Brugia spp.: Mf prevalence and/or antibody testing. Include all raw results.", dataSource: "Laboratory results, FTS/ICT results, microscopy records", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required", threshold: "W. bancrofti: <2% Ag AND no Mf among Ag-positive individuals \u2192 proceed to TAS. Brugia spp.: <2% Ab or <1% Mf." },
+            { title: "EMS Pass/Fail Determination per EU", description: "Clear statement for each EU of whether EMS thresholds were met, and whether the EU is cleared to proceed to TAS.", dataSource: "EMS summary analysis", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required" },
+            { title: "Actions Taken for EMS Failures", description: "If any EU failed EMS: additional MDA rounds conducted, root cause analysis, and repeat EMS results.", dataSource: "Follow-up MDA reports, investigation records, repeat EMS data", whoRef: "M&E Manual 2nd ed. Ch. 6", priority: "required" }
+        ]
+    },
+    {
+        section: "6. Transmission Assessment Surveys (TAS 1, 2, 3)",
+        description: "The core evidence for stopping MDA (TAS 1) and confirming sustained interruption of transmission (TAS 2 & 3 during post-treatment surveillance).",
+        items: [
+            { title: "TAS Eligibility Checklist per EU", description: "For each EU, document that eligibility criteria were met before TAS: EMS thresholds passed, \u22655 effective MDA rounds (2-drug) or 1\u20132 rounds (IDA with IIS), \u226565% coverage.", dataSource: "TAS readiness checklists, MDA summaries, EMS results", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.3", priority: "required" },
+            { title: "TAS 1 \u2014 Pre-MDA Stopping Survey", description: "Results of TAS 1 in children aged 6\u20137 years (school-based: grades 1\u20132; community-based: exact ages). Include: EU name, survey dates, sample size, number positive, critical cut-off, pass/fail.", dataSource: "TAS 1 reports, FTS results, LQAS analysis", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.3", priority: "required", threshold: "W. bancrofti + Aedes vector: <1% Ag. W. bancrofti + Anopheles/Culex: <2% Ag. Brugia spp.: <2% Ab. Number positive must be below the critical cut-off value from SSB." },
+            { title: "TAS 2 \u2014 First Post-MDA Surveillance Survey", description: "TAS 2 conducted ~2\u20133 years after MDA was stopped (i.e., ~2 years after TAS 1). Same design, target population, and thresholds as TAS 1.", dataSource: "TAS 2 survey reports, laboratory results", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.4", priority: "required" },
+            { title: "TAS 3 \u2014 Second Post-MDA Surveillance Survey", description: "TAS 3 conducted ~4\u20136 years after MDA was stopped (~2 years after TAS 2). Completing the post-treatment surveillance sequence.", dataSource: "TAS 3 survey reports, laboratory results", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.4", priority: "required" },
+            { title: "TAS Sampling Methodology & Sample Size", description: "For each TAS: school-based or community-based design; cluster sampling (30 or 40 clusters); LQAS methodology; critical cut-off values; Survey Sample Builder (SSB) outputs.", dataSource: "TAS protocols, WHO SSB tool outputs, cluster lists", whoRef: "M&E Manual 2nd ed. Ch. 7", priority: "required" },
+            { title: "TAS Diagnostic Tools, Batch Numbers & QC", description: "Diagnostic test used (FTS recommended over ICT for W. bancrofti; Brugia Rapid for B. malayi/timori), lot/batch numbers, storage conditions, and QC testing records.", dataSource: "Procurement records, cold chain logs, QC test results", whoRef: "M&E Manual 2nd ed. Ch. 7", priority: "required" },
+            { title: "TAS-Positive Case Investigation", description: "For every child testing positive: follow-up Mf testing, household and neighbourhood investigation, GPS location. Documentation of whether positives were clustered.", dataSource: "Case investigation forms, Mf confirmation results, cluster investigation reports", whoRef: "M&E Manual 2nd ed. Ch. 7", priority: "required" },
+            { title: "Response to Clustered Positives", description: "If \u22652 positive children found in the same cluster or school catchment: documentation of targeted MDA in the area and subsequent re-survey results.", dataSource: "Targeted MDA reports, re-survey data", whoRef: "M&E Manual 2nd ed. Ch. 7", priority: "required" },
+            { title: "TAS Failure Investigation & Response", description: "If any EU failed TAS (exceeded critical cut-off): root cause analysis, additional MDA rounds conducted, and repeat TAS results.", dataSource: "Investigation reports, additional MDA records, repeat TAS data", whoRef: "M&E Manual 2nd ed. Ch. 7", priority: "required" },
+            { title: "Summary TAS Results Table (All EUs, All Rounds)", description: "Consolidated table with one row per EU per TAS round showing: EU name/ID, population, survey type, dates, sample size, number tested, number positive, critical cut-off, result.", dataSource: "Compiled from individual TAS reports", whoRef: "Dossier template Annex tables", priority: "required" }
+        ]
+    },
+    {
+        section: "7. IDA Impact Surveys (IIS) \u2014 If IDA Regimen Used",
+        description: "For countries or areas using triple-drug therapy (IDA: ivermectin + DEC + albendazole), the IIS pathway replaces TAS for the MDA-stopping decision.",
+        items: [
+            { title: "IIS Eligibility Documentation", description: "Evidence that each EU met IIS criteria: 1\u20132 effective IDA rounds with \u226565% coverage AND EMS thresholds met.", dataSource: "IDA MDA coverage reports, EMS results", whoRef: "M&E Manual 2nd ed. Ch. 8", priority: "required" },
+            { title: "IIS Survey Design & Methodology", description: "30-cluster survey among adults \u226520 years, random sampling within highest-risk communities. RDT screening followed by Mf testing of RDT-positive individuals.", dataSource: "IIS protocols, WHO IIS guidance, sampling documentation", whoRef: "M&E Manual 2nd ed. Ch. 8", priority: "required" },
+            { title: "IIS Results \u2014 Mf Prevalence", description: "Average Mf prevalence in the EU must be below the vector-specific threshold.", dataSource: "IIS survey reports, microscopy results, prevalence calculations", whoRef: "M&E Manual 2nd ed. Ch. 8", priority: "required", threshold: "Anopheles/Culex/Mansonia vectors: <1% Mf. Aedes vectors: <0.5% Mf." },
+            { title: "IIS Cluster-Level Analysis", description: "Number of clusters exceeding the cluster-level critical cut-off for Mf-positive adults. Maximum 2 clusters may exceed without triggering follow-up.", dataSource: "IIS cluster analysis, spatial distribution data", whoRef: "M&E Manual 2nd ed. Ch. 8", priority: "required", threshold: "\u22642 clusters may exceed cluster-level cut-off. >2 clusters triggers targeted response." },
+            { title: "IIS Follow-Up Actions for Exceedances", description: "If >2 clusters exceed thresholds: targeted MDA in affected areas and follow-up survey results.", dataSource: "Targeted intervention reports, follow-up survey data", whoRef: "M&E Manual 2nd ed. Ch. 8", priority: "required" },
+            { title: "IIS 2 and IIS 3 (Post-MDA Surveillance Surveys)", description: "Repeat IIS at appropriate intervals during post-treatment surveillance (analogous to TAS 2 and TAS 3).", dataSource: "IIS 2 and IIS 3 survey reports", whoRef: "M&E Manual 2nd ed. Ch. 8", priority: "required" }
+        ]
+    },
+    {
+        section: "8. Morbidity Management & Disability Prevention (MMDP)",
+        description: "WHO requires that ALL endemic IUs have access to the recommended minimum package of MMDP services. This is a mandatory pillar for validation \u2014 not optional.",
+        items: [
+            { title: "Lymphoedema & Hydrocele Patient Estimates by IU", description: "Number of lymphoedema patients (all stages) and hydrocele patients identified in each endemic IU. Include estimation methodology (surveys, health facility records, community case-finding).", dataSource: "Morbidity surveys, DHIS2/HMIS registers, community health worker reports", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.5", priority: "required" },
+            { title: "100% Geographic Coverage of MMDP Services", description: "Evidence that the recommended minimum package of care is available in EVERY endemic IU with known patients. Map showing service availability overlaid on patient distribution.", dataSource: "Health facility mapping, MMDP service inventory, GIS maps", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.5", priority: "required", threshold: "100% of endemic IUs with identified patients must have access to MMDP services. This is a mandatory validation requirement." },
+            { title: "MMDP Minimum Package of Care Documentation", description: "Evidence of availability of each component: (a) lymphoedema management (hygiene, skin care, exercise, elevation); (b) management of acute dermatolymphangioadenitis (ADLA) episodes; (c) hydrocele surgery.", dataSource: "MMDP implementation guidelines, service delivery protocols, training curricula", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed. (2024)", priority: "required" },
+            { title: "Designated MMDP Health Facilities", description: "List of health facilities designated to provide MMDP services: name, location, IU, services offered, staffing. Include number of facilities relative to patient load.", dataSource: "Facility readiness surveys, MoH facility registry", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.5", priority: "required" },
+            { title: "Health Worker Training Records", description: "Number and cadre of health workers trained in lymphoedema management and hydrocele surgery. Include training dates, curricula used, and post-training competency assessments.", dataSource: "Training reports, participant lists, competency certificates", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed.", priority: "required" },
+            { title: "Hydrocele Surgery Capacity & Outcomes", description: "Number of facilities with surgical capacity, surgeons trained, surgeries performed per year, complication rates, and follow-up outcomes.", dataSource: "Surgical logs, hospital records, complication tracking forms", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed.", priority: "required" },
+            { title: "Patient Enrolment & Follow-Up Records", description: "Number of lymphoedema patients actively enrolled in self-care management programmes; frequency of ADLA episodes before and after enrolment; hydrocele surgical outcomes.", dataSource: "Patient registers, MMDP monitoring forms, follow-up records", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed.", priority: "required" },
+            { title: "Community-Based MMDP & Patient Support", description: "Evidence of community support structures: patient support groups, community health volunteer roles, disability inclusion activities.", dataSource: "Support group registers, community activity reports, disability inclusion assessments", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed.", priority: "recommended" },
+            { title: "MMDP Integration into Health System", description: "Plan for long-term sustainability of MMDP services through integration into primary health care, NCD programmes, or chronic disease management. Include budget allocation.", dataSource: "Health system integration plans, national budget, sustainability assessments", whoRef: "Dossier template \u00a78", priority: "required" },
+            { title: "Facility Quality Assessment (DIP or Equivalent)", description: "Results of Direct Inspection Protocol (DIP) or equivalent quality assessment at a sample of MMDP facilities (WHO recommends \u226510%). Assess trained staff, case management materials, water/hygiene infrastructure, medicines/commodities, patient tracking, staff knowledge.", dataSource: "DIP assessment reports, facility audit forms, quality improvement plans", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed. (2024)", priority: "required" },
+            { title: "Patient Identification & Diagnostic Confirmation Methods", description: "Documentation of clinical examination protocols used to confirm lymphoedema staging and hydrocele diagnoses (e.g., ultrasound for hydrocele). DRGs may query whether estimates are based on confirmed vs. self-reported cases.", dataSource: "Clinical examination protocols, ultrasound records, diagnostic confirmation data", whoRef: "WHO MMDP aide-m\u00e9moire 2nd ed.", priority: "recommended" }
+        ]
+    },
+    {
+        section: "9. Laboratory Capacity & Quality Management",
+        description: "Documentation of diagnostic laboratory capacity, quality assurance systems, and proficiency testing \u2014 essential for the credibility of all survey data.",
+        items: [
+            { title: "Laboratory Capacity Assessment", description: "Overview of national and regional laboratories involved in LF diagnostics: microscopy for Mf, RDT reading (FTS, Brugia Rapid), and molecular methods (PCR for xenomonitoring).", dataSource: "Laboratory assessment reports, equipment inventories", whoRef: "M&E Manual 2nd ed. Ch. 10", priority: "required" },
+            { title: "Standard Operating Procedures (SOPs)", description: "SOPs for all diagnostic procedures used in monitoring and surveys: night blood collection, thick smear preparation, RDT procedures, sample storage and transport.", dataSource: "Laboratory SOP documents", whoRef: "M&E Manual 2nd ed. Ch. 10", priority: "required" },
+            { title: "External Quality Assurance (EQA)", description: "Participation in EQA programmes for microscopy and/or RDT reading. Include proficiency test results, scores, and corrective actions for any deficiencies.", dataSource: "EQA reports, WHO collaborating centre correspondence, proficiency test results", whoRef: "M&E Manual 2nd ed. Ch. 10", priority: "recommended" },
+            { title: "Diagnostic Test Performance Documentation", description: "Documentation of RDT lot testing, sensitivity/specificity data for diagnostic tools used, and any cross-reactivity concerns in co-endemic settings.", dataSource: "RDT lot testing reports, published validation studies", whoRef: "M&E Manual 2nd ed. Ch. 10", priority: "recommended" }
+        ]
+    },
+    {
+        section: "10. Surveillance Systems",
+        description: "Both post-treatment surveillance (before validation) and a comprehensive post-validation surveillance plan (\u226510 years after validation). WHO requires at least 2 of 4 surveillance platforms.",
+        items: [
+            { title: "Post-Treatment Surveillance (PTS) Summary", description: "Overview of surveillance activities during the 4\u20136 year period between stopping MDA and dossier submission, covering TAS 1-2-3 / IIS sequence.", dataSource: "National surveillance plan, TAS/IIS schedule", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.4", priority: "required" },
+            { title: "Post-Validation Surveillance (PVS) Plan", description: "Comprehensive plan for \u226510 years after validation. Must describe at least 2 of the 4 WHO-recommended platforms, sampling strategy, frequency, response triggers, and budget.", dataSource: "PVS strategic document", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.6", priority: "required", threshold: "Minimum 10 years of PVS. Must implement \u22652 of 4 platforms: (1) targeted surveys, (2) integration with existing surveys (DHS/MICS/STEPwise), (3) health facility screening, (4) molecular xenomonitoring." },
+            { title: "Platform 1: Targeted Surveys in High-Risk Areas", description: "Plan for periodic surveys in areas with historically high prevalence, low MDA coverage, or migrant/mobile populations. Include frequency, target population, and diagnostics.", dataSource: "Risk stratification analysis, targeted survey protocols", whoRef: "M&E Manual 2nd ed. Ch. 9", priority: "recommended" },
+            { title: "Platform 2: Integration with Existing Surveys", description: "Plans to integrate LF testing into nationally representative surveys (DHS, MICS, malaria indicator surveys, school health surveys, STEPwise) or other NTD assessments.", dataSource: "Integrated survey proposals, data sharing agreements", whoRef: "M&E Manual 2nd ed. Ch. 9", priority: "recommended" },
+            { title: "Platform 3: Health Facility-Based Screening", description: "Protocol for routine LF screening at health facilities in formerly endemic areas \u2014 e.g., antenatal care clinics, outpatient departments, blood banks.", dataSource: "Surveillance SOPs, facility screening registers, laboratory request forms", whoRef: "M&E Manual 2nd ed. Ch. 9", priority: "recommended" },
+            { title: "Platform 4: Molecular Xenomonitoring (Mx)", description: "If applicable: capacity for mosquito pool screening using qPCR to detect parasite DNA in vectors. Include laboratory protocols, trap sites, and results.", dataSource: "Mx protocols, vector collection data, PCR results", whoRef: "M&E Manual 2nd ed. Ch. 9", priority: "recommended" },
+            { title: "Xenomonitoring Surveillance Data (If Conducted)", description: "Results of molecular xenomonitoring (Mx) surveys showing vector infection/infectivity rates. Include: mosquito collection methods, number of pools tested (WHO recommends ~10,000 mosquitoes), PCR methodology, and infection rate calculations.", dataSource: "Mx survey reports, PCR laboratory results, vector collection logs, pool screening data", whoRef: "M&E Manual 2nd ed. Ch. 9", priority: "recommended" },
+            { title: "Case Detection & Response Protocol", description: "Algorithm for investigating any newly detected cases: definition of recrudescence vs. importation, trigger thresholds for re-starting MDA, rapid response procedures.", dataSource: "Case investigation protocols, decision-tree algorithms, rapid response plans", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.6", priority: "required" },
+            { title: "High-Risk Population Surveillance Strategy", description: "Targeted monitoring of populations at risk for re-introduction: cross-border areas, migrant worker camps, refugee settlements, areas with imported cases.", dataSource: "Migration analysis, border health assessments, refugee health records", whoRef: "M&E Manual 2nd ed. Ch. 9", priority: "required" },
+            { title: "Surveillance Data Management System", description: "Description of data collection tools, electronic databases (DHIS2 or equivalent), reporting flows from facility \u2192 district \u2192 national \u2192 WHO (EPIRF).", dataSource: "DHIS2 configuration, surveillance database documentation, EPIRF forms", whoRef: "Dossier template \u00a79", priority: "required" },
+            { title: "Budget & Sustainability for PVS", description: "Costed plan for PVS showing government budget allocation, partner commitments, and integration into health system financing to ensure sustainability.", dataSource: "National budget documents, financial commitment letters, partner MOUs", whoRef: "Dossier template \u00a79", priority: "required" }
+        ]
+    },
+    {
+        section: "11. Supporting Evidence & Cross-Cutting Issues",
+        description: "Contextual evidence that strengthens the dossier \u2014 vector control, co-interventions, migration analysis, operational research, and risk assessment.",
+        items: [
+            { title: "Vector Control Contributions", description: "Documentation of vector control interventions that may have contributed to transmission reduction: ITN distribution & coverage, IRS campaigns, larval source management.", dataSource: "Malaria/vector control programme reports, ITN distribution data, IRS coverage records", whoRef: "Dossier template \u00a710", priority: "recommended" },
+            { title: "Synergistic NTD Co-Interventions", description: "Other MDA programmes (onchocerciasis, STH, schistosomiasis) or WASH interventions that may have had additive effects on LF transmission.", dataSource: "Integrated NTD programme reports, WHO PCT databank", whoRef: "Dossier template \u00a710", priority: "recommended" },
+            { title: "Migration & Population Movement Analysis", description: "Assessment of cross-border movement, internal migration, and refugee/IDP populations that could affect transmission dynamics or re-introduction risk.", dataSource: "Census data, migration studies, border health assessments, UNHCR data", whoRef: "Dossier template \u00a710", priority: "required" },
+            { title: "Risk Assessment for Recrudescence/Re-Introduction", description: "Formal risk analysis considering: neighbouring country endemicity, cross-border movement, vector ecology, climate factors, and surveillance capacity.", dataSource: "Risk analysis documents, neighbouring country LF status, environmental data", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a74.6", priority: "required" },
+            { title: "Programme Challenges & Mitigation Strategies", description: "Transparent documentation of major challenges faced (conflict, COVID-19, supply disruptions, low coverage areas) and how each was addressed.", dataSource: "Programme review reports, situation reports, adaptation strategies", whoRef: "Dossier template \u00a710", priority: "required" },
+            { title: "Operational Research & Published Studies", description: "Results of operational research conducted in-country: coverage studies, diagnostic evaluations, transmission modelling, or effectiveness studies. Include published papers.", dataSource: "Research reports, journal publications, study protocols", whoRef: "Dossier template \u00a710", priority: "supporting" },
+            { title: "Independent Programme Reviews", description: "Reports from external programme reviews (WHO, partners, or independent experts) conducted during the programme\u2019s lifetime.", dataSource: "Programme review reports, external evaluation documents", whoRef: "Dossier template \u00a710", priority: "recommended" }
+        ]
+    },
+    {
+        section: "12. Dossier Compilation, Review & Submission",
+        description: "Final assembly of the dossier package, internal review, and submission through the WHO validation pathway.",
+        items: [
+            { title: "WHO Dossier Template Completed", description: "All sections of the standard WHO dossier template filled in according to the prescribed format (Annex 2 of WHO/HTM/NTD/PCT/2017.1).", dataSource: "WHO dossier template", whoRef: "WHO/HTM/NTD/PCT/2017.1 Annex 2", priority: "required" },
+            { title: "IU-Level Summary Data Tables", description: "Consolidated master table(s): every IU with endemicity status, MDA years & regimen, coverage per round, sentinel/spot-check results, EMS results, TAS/IIS results, MMDP status.", dataSource: "National database, WHO data summary tool", whoRef: "Dossier template Annex tables", priority: "required" },
+            { title: "GIS Maps Package", description: "Set of maps: (a) endemic IUs at baseline, (b) MDA coverage by IU over time, (c) TAS/IIS evaluation units with results, (d) MMDP facility coverage, (e) surveillance sites.", dataSource: "GIS tools, programme mapping outputs", whoRef: "Dossier template Annexes", priority: "required" },
+            { title: "Data Consistency Cross-Check", description: "Internal audit confirming: MDA dates match survey timelines, population denominators are consistent, coverage calculations are correct, TAS critical cut-offs match SSB outputs.", dataSource: "Internal quality review, data verification checklist", whoRef: "Best practice \u2014 DRG commonly identifies inconsistencies", priority: "required" },
+            { title: "Data Source Triangulation", description: "Cross-validation of key data streams: MDA coverage figures vs. sentinel site prevalence trends (should be logically consistent), population denominators across different reports, TAS survey dates vs. MDA calendar.", dataSource: "Internal quality review comparing MDA, survey, and administrative data", whoRef: "Best practice \u2014 DRG frequently queries data inconsistencies", priority: "required" },
+            { title: "National Stakeholder Review", description: "Evidence that the dossier was reviewed and endorsed by key national stakeholders (NTD programme, MoH, national statistics office) before submission.", dataSource: "Review meeting minutes, endorsement letters", whoRef: "Best practice from validated countries", priority: "required" },
+            { title: "Regional Programme Review Group (RPRG) / RTAG Pre-Review", description: "Optional but strongly recommended: preliminary review by the WHO Regional RPRG or Regional Technical Advisory Group before formal submission.", dataSource: "RPRG/RTAG review comments, programme responses", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a75", priority: "recommended" },
+            { title: "Supporting Annexes & Appendices", description: "Complete package of supporting documents: detailed survey reports, laboratory SOPs, MDA operational guidelines, training materials, data collection forms, photographs.", dataSource: "Programme archives", whoRef: "Dossier template Annexes", priority: "required" },
+            { title: "Submission Package (Hard Copy + Electronic)", description: "One hard copy and one electronic copy submitted to the WHO Country Office, addressed to the WHO Representative, for onward transmission to WHO Regional Office.", dataSource: "Submission receipt, official correspondence", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a75", priority: "required" },
+            { title: "Dossier Review Group (DRG) Preparation", description: "Be prepared to respond to DRG queries: designate a focal point, have raw data accessible, and plan for potential site visits or clarification requests.", dataSource: "Programme management plan", whoRef: "WHO/HTM/NTD/PCT/2017.1 \u00a75", priority: "recommended" }
+        ]
+    }
+];
+
+// SVG icons used in the upload area
+const UPLOAD_ARROW_SVG = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
+const FILE_SVG = '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+
+let state = loadState();
+let currentFilter = 'all';
+
+function loadState() {
+    const saved = localStorage.getItem('lfDossierChecklist_v2');
+    if (saved) {
+        try {
+            const s = JSON.parse(saved);
+            checklistData.forEach((section, sIdx) => {
+                if (s.expanded[sIdx] === undefined) s.expanded[sIdx] = false;
+                section.items.forEach((item, iIdx) => {
+                    const key = `${sIdx}-${iIdx}`;
+                    if (s.completed[key] === undefined) s.completed[key] = false;
+                    if (s.notes[key] === undefined) s.notes[key] = '';
+                });
+            });
+            if (!s.uploads) s.uploads = {};
+            return s;
+        } catch(e) {}
+    }
+    const newState = { completed: {}, notes: {}, expanded: {}, countryInfo: {}, uploads: {} };
+    checklistData.forEach((section, sIdx) => {
+        newState.expanded[sIdx] = false;
+        section.items.forEach((item, iIdx) => {
+            const key = `${sIdx}-${iIdx}`;
+            newState.completed[key] = false;
+            newState.notes[key] = '';
+        });
+    });
+    return newState;
+}
+
+function saveState() {
+    state.countryInfo = {};
+    document.querySelectorAll('.country-info input, .country-info select').forEach(el => {
+        state.countryInfo[el.id] = el.value;
+    });
+    localStorage.setItem('lfDossierChecklist_v2', JSON.stringify(state));
+}
+
+function restoreCountryInfo() {
+    if (state.countryInfo) {
+        Object.keys(state.countryInfo).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = state.countryInfo[id];
+        });
+    }
+}
+
+function renderChecklist() {
+    const container = document.getElementById('checklist-container');
+    container.innerHTML = '';
+
+    checklistData.forEach((section, sIdx) => {
+        const items = section.items;
+        const completed = items.filter((_, iIdx) => state.completed[`${sIdx}-${iIdx}`]).length;
+        const total = items.length;
+        const isExpanded = state.expanded[sIdx];
+
+        const hasVisibleItems = items.some((item, iIdx) => {
+            const key = `${sIdx}-${iIdx}`;
+            if (currentFilter === 'completed' && !state.completed[key]) return false;
+            if (currentFilter === 'incomplete' && state.completed[key]) return false;
+            if (currentFilter === 'required' && item.priority !== 'required') return false;
+            if (currentFilter === 'recommended' && item.priority !== 'recommended') return false;
+            return true;
+        });
+
+        if (!hasVisibleItems && currentFilter !== 'all') return;
+
+        const div = document.createElement('div');
+        div.className = 'section';
+        div.innerHTML = `
+            <div class="section-header" onclick="toggleSection(${sIdx})">
+                <div class="section-title">
+                    <span class="collapse-icon ${isExpanded ? 'rotated' : ''}">&#9660;</span>
+                    ${section.section}
+                </div>
+                <div class="section-meta"><span>${completed}/${total}</span></div>
+            </div>
+            ${section.description ? `<div class="section-desc">${section.description}</div>` : ''}
+            <div class="section-content ${isExpanded ? 'active' : ''}" id="section-${sIdx}">
+                ${items.map((item, iIdx) => renderItem(item, sIdx, iIdx)).join('')}
+            </div>
+        `;
+        container.appendChild(div);
+    });
+
+    updateProgress();
+}
+
+function renderItem(item, sIdx, iIdx) {
+    const key = `${sIdx}-${iIdx}`;
+    const checked = state.completed[key];
+    const note = state.notes[key] || '';
+    const uploads = (state.uploads && state.uploads[key]) || [];
+
+    if (currentFilter === 'completed' && !checked) return '';
+    if (currentFilter === 'incomplete' && checked) return '';
+    if (currentFilter === 'required' && item.priority !== 'required') return '';
+    if (currentFilter === 'recommended' && item.priority !== 'recommended') return '';
+
+    const prClass = item.priority === 'required' ? 'priority-required' :
+                    item.priority === 'recommended' ? 'priority-recommended' : 'priority-supporting';
+    const prLabel = item.priority.charAt(0).toUpperCase() + item.priority.slice(1);
+
+    const uploadedChips = uploads.length > 0 ? `
+        <div class="uploaded-files">
+            ${uploads.map(f => `<span class="file-chip">${FILE_SVG} ${f}</span>`).join('')}
+        </div>` : '';
+
+    return `
+        <div class="item ${checked ? 'checked' : ''}">
+            <div class="item-header">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="check-${key}" ${checked ? 'checked' : ''} onchange="toggleItem('${key}')">
+                </div>
+                <div class="item-content">
+                    <div class="item-title-row">
+                        <span class="item-title">${item.title}</span>
+                        <span class="priority-tag ${prClass}">${prLabel}</span>
+                    </div>
+                    <div class="item-description">${item.description}</div>
+                    ${item.threshold ? `<div class="threshold-box"><strong>Key threshold / criterion:</strong> ${item.threshold}</div>` : ''}
+                    <div class="item-meta">
+                        <span class="data-source">&#128202; ${item.dataSource}</span>
+                        ${item.whoRef ? `<span class="who-ref">&#128214; ${item.whoRef}</span>` : ''}
+                    </div>
+                    <div class="notes-area">
+                        <textarea placeholder="Notes: file locations, responsible person, gaps to address..."
+                            onchange="updateNote('${key}', this.value)"
+                            onblur="updateNote('${key}', this.value)"
+                        >${note}</textarea>
+                    </div>
+                    <div class="upload-area" onclick="mockUpload('${key}')">
+                        <div class="upload-icon">${UPLOAD_ARROW_SVG}</div>
+                        <div class="upload-text">
+                            <div class="upload-text-main"><span class="upload-link">Click to upload</span> or drag and drop supporting documents</div>
+                            <div class="upload-text-sub">PDF, DOCX, XLSX, CSV, images \u2014 max 50 MB per file</div>
+                        </div>
+                        <button class="upload-btn" onclick="event.stopPropagation(); mockUpload('${key}')">
+                            ${UPLOAD_ARROW_SVG} Upload
+                        </button>
+                    </div>
+                    ${uploadedChips}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function mockUpload(key) {
+    // Mock upload — shows a demo file chip. In production this would open a file picker.
+    const mockFiles = [
+        'MDA_Coverage_Report_2024.pdf',
+        'Sentinel_Site_Data.xlsx',
+        'TAS_Results_Summary.pdf',
+        'MMDP_Facility_Assessment.docx',
+        'Baseline_Mapping_Survey.pdf',
+        'EMS_Laboratory_Results.xlsx',
+        'Drug_Distribution_Records.csv',
+        'GIS_Endemic_Areas_Map.pdf'
+    ];
+    if (!state.uploads) state.uploads = {};
+    if (!state.uploads[key]) state.uploads[key] = [];
+
+    // Pick a random mock filename
+    const file = mockFiles[Math.floor(Math.random() * mockFiles.length)];
+    state.uploads[key].push(file);
+    saveState();
+    renderChecklist();
+}
+
+function toggleItem(key) {
+    state.completed[key] = !state.completed[key];
+    saveState();
+    renderChecklist();
+}
+
+function updateNote(key, value) {
+    state.notes[key] = value;
+    saveState();
+}
+
+function toggleSection(idx) {
+    state.expanded[idx] = !state.expanded[idx];
+    saveState();
+    renderChecklist();
+}
+
+function expandAll() {
+    checklistData.forEach((_, i) => { state.expanded[i] = true; });
+    saveState(); renderChecklist();
+}
+
+function collapseAll() {
+    checklistData.forEach((_, i) => { state.expanded[i] = false; });
+    saveState(); renderChecklist();
+}
+
+function updateProgress() {
+    const row = document.getElementById('progress-row');
+    row.innerHTML = '';
+    let totalAll = 0, completedAll = 0;
+    checklistData.forEach((section, sIdx) => {
+        const total = section.items.length;
+        const completed = section.items.filter((_, iIdx) => state.completed[`${sIdx}-${iIdx}`]).length;
+        totalAll += total; completedAll += completed;
+    });
+    const pct = totalAll > 0 ? Math.round((completedAll / totalAll) * 100) : 0;
+    document.getElementById('progress-text').textContent = `${completedAll} / ${totalAll} items (${pct}%)`;
+    const fill = document.getElementById('progress-fill');
+    fill.style.width = `${pct}%`;
+    fill.textContent = pct > 5 ? `${pct}%` : '';
+}
+
+function filterItems(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderChecklist();
+}
+
+function exportText() {
+    let txt = 'WHO LF ELIMINATION DOSSIER \u2014 EVIDENCE COLLECTION CHECKLIST\n';
+    txt += '='.repeat(70) + '\n';
+    txt += `Generated: ${new Date().toLocaleString()}\n`;
+    const ci = state.countryInfo || {};
+    if (ci['ci-country']) txt += `Country: ${ci['ci-country']}\n`;
+    if (ci['ci-region']) txt += `WHO Region: ${ci['ci-region']}\n`;
+    const total = Object.keys(state.completed).length;
+    const done = Object.values(state.completed).filter(v => v).length;
+    txt += `\nProgress: ${done}/${total} (${Math.round((done/total)*100)}%)\n`;
+    checklistData.forEach((section, sIdx) => {
+        txt += `\n${'─'.repeat(70)}\n${section.section}\n${'─'.repeat(70)}\n`;
+        section.items.forEach((item, iIdx) => {
+            const key = `${sIdx}-${iIdx}`;
+            const status = state.completed[key] ? '[\u2713]' : '[ ]';
+            const pr = `[${item.priority.toUpperCase()}]`;
+            txt += `\n${status} ${pr} ${item.title}\n`;
+            txt += `    ${item.description}\n`;
+            if (item.threshold) txt += `    THRESHOLD: ${item.threshold}\n`;
+            txt += `    Data source: ${item.dataSource}\n`;
+            if (item.whoRef) txt += `    WHO ref: ${item.whoRef}\n`;
+            if (state.notes[key]) txt += `    Notes: ${state.notes[key]}\n`;
+        });
+    });
+    const blob = new Blob([txt], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url;
+    a.download = `LF_Dossier_Checklist_${new Date().toISOString().split('T')[0]}.txt`;
+    a.click(); URL.revokeObjectURL(url);
+}
+
+function exportJSON() {
+    saveState();
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url;
+    a.download = `LF_Dossier_Checklist_Backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.click(); URL.revokeObjectURL(url);
+}
+
+function importJSON() { document.getElementById('import-file').click(); }
+
+function handleImport(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const imported = JSON.parse(e.target.result);
+            if (imported.completed && imported.notes) {
+                state = imported;
+                if (!state.uploads) state.uploads = {};
+                saveState(); restoreCountryInfo(); renderChecklist();
+                alert('Checklist state restored successfully.');
+            } else { alert('Invalid backup file format.'); }
+        } catch(err) { alert('Error reading backup file: ' + err.message); }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+}
+
+function resetAll() {
+    if (confirm('Reset ALL progress and notes? This cannot be undone.')) {
+        localStorage.removeItem('lfDossierChecklist_v2');
+        state = loadState();
+        renderChecklist(); restoreCountryInfo();
+    }
+}
+
+document.addEventListener('input', function(e) {
+    if (e.target.closest('.country-info')) saveState();
+});
+
+renderChecklist();
+restoreCountryInfo();
+</script>
+</body>
+</html>
